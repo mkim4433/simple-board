@@ -1,9 +1,11 @@
 package com.example.simple_board.post.db;
 
+import com.example.simple_board.reply.db.ReplyEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,5 +36,8 @@ public class PostEntity {
     private String content;
 
     private LocalDateTime postedAt;
+
+    @Transient
+    private List<ReplyEntity> replies = List.of();
 
 }
