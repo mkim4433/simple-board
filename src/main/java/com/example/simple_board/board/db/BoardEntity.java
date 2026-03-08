@@ -3,7 +3,7 @@ package com.example.simple_board.board.db;
 import com.example.simple_board.post.db.PostEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.util.List;
 
@@ -25,9 +25,7 @@ public class BoardEntity {
     private String status;
 
     @OneToMany(mappedBy = "board")
-    @Where(clause = "status = 'REGISTERED'")
+    @SQLRestriction("status = 'REGISTERED'")
     @OrderBy("id desc")
     private List<PostEntity> postList = List.of();
 }
-
-

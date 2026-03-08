@@ -1,26 +1,22 @@
 package com.example.simple_board.post.service;
 
-import com.example.simple_board.board.db.BoardEntity;
 import com.example.simple_board.board.db.BoardRepository;
 import com.example.simple_board.post.db.PostEntity;
 import com.example.simple_board.post.db.PostRepository;
 import com.example.simple_board.post.model.PostDto;
 import com.example.simple_board.post.model.PostRequest;
 import com.example.simple_board.post.model.PostViewRequest;
-import com.example.simple_board.reply.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
 
     private final PostRepository postRepository;
-    private final ReplyService replyService;
     private final BoardRepository boardRepository;
     private final PostConverter postConverter;
 

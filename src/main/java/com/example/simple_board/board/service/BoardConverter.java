@@ -6,8 +6,6 @@ import com.example.simple_board.post.service.PostConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Collectors;
-
 @Service
 @RequiredArgsConstructor
 public class BoardConverter {

@@ -21,7 +21,6 @@ public class ReplyEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "post_id")
     @JsonIgnore
     @ToString.Exclude
     private PostEntity post;

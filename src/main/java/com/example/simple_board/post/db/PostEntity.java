@@ -25,7 +25,6 @@ public class PostEntity {
     @ManyToOne
     @JsonIgnore
     @ToString.Exclude
-    @JoinColumn(name = "board_id")
     private BoardEntity board;
 
     private String userName;
@@ -44,6 +43,6 @@ public class PostEntity {
     private LocalDateTime postedAt;
 
     @OneToMany(mappedBy = "post")
-    private List<ReplyEntity> replies = List.of();
+    private List<ReplyEntity> replyList = List.of();
 
 }
