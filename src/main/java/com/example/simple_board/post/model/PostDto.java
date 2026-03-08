@@ -1,38 +1,38 @@
 package com.example.simple_board.post.model;
 
+import com.example.simple_board.reply.model.ReplyDto;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Builder
 @JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PostRequest {
+public class PostDto {
 
-    private Long boardId = 1L; // 임시 고정
+    private Long id;
 
-    @NotBlank
+    private Long boardId;
+
     private String userName;
 
-    @NotBlank
-    @Size(min = 4, max = 4)
     private String password;
 
-    @NotBlank
-    @Email
     private String email;
 
-    @NotBlank
-    private String title;
+    private String status;
 
+    private String title;
 
     private String content;
 
+    private LocalDateTime postedAt;
+
+    private List<ReplyDto> replyList = List.of();
 }

@@ -1,6 +1,7 @@
 package com.example.simple_board.post.controller;
 
 import com.example.simple_board.post.db.PostEntity;
+import com.example.simple_board.post.model.PostDto;
 import com.example.simple_board.post.model.PostRequest;
 import com.example.simple_board.post.model.PostViewRequest;
 import com.example.simple_board.post.service.PostService;
@@ -18,13 +19,13 @@ public class PostApiController {
     private final PostService postService;
 
     @PostMapping("")
-    public PostEntity create(@Valid @RequestBody PostRequest postRequest) {
+    public PostDto create(@Valid @RequestBody PostRequest postRequest) {
 
         return postService.create(postRequest);
     }
 
     @PostMapping("/view")
-    public PostEntity view(@Valid @RequestBody PostViewRequest postViewRequest) {
+    public PostDto view(@Valid @RequestBody PostViewRequest postViewRequest) {
 
         return postService.view(postViewRequest);
     }

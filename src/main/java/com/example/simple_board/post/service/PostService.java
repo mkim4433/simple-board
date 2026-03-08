@@ -1,7 +1,10 @@
 package com.example.simple_board.post.service;
 
+import com.example.simple_board.board.db.BoardEntity;
+import com.example.simple_board.board.db.BoardRepository;
 import com.example.simple_board.post.db.PostEntity;
 import com.example.simple_board.post.db.PostRepository;
+import com.example.simple_board.post.model.PostDto;
 import com.example.simple_board.post.model.PostRequest;
 import com.example.simple_board.post.model.PostViewRequest;
 import com.example.simple_board.reply.service.ReplyService;
@@ -18,11 +21,14 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final ReplyService replyService;
+    private final BoardRepository boardRepository;
+    private final PostConverter postConverter;
 
-    public PostEntity create(PostRequest postRequest) {
+    public PostDto create(PostRequest postRequest) {
 
+        var theBoard = boardRepository.findById(postRequest.getBoardId()).get();
         var entity = PostEntity.builder()
-                .boardId(1L) // 임시 고정
+                .board(theBoard) // 임시 고정
                 .userName(postRequest.getUserName())
                 .password(postRequest.getPassword())
                 .email(postRequest.getEmail())
@@ -32,10 +38,11 @@ public class PostService {
                 .postedAt(LocalDateTime.now())
                 .build();
 
-        return postRepository.save(entity);
+        var savedEntity = postRepository.save(entity);
+        return postConverter.toDto(savedEntity);
     }
 
-    public PostEntity view(PostViewRequest request) {
+    public PostDto view(PostViewRequest request) {
 
         return postRepository.findFirstByIdAndStatusOrderByIdDesc(request.getPostId(), "REGISTERED")
                 .map(it -> {
@@ -44,10 +51,7 @@ public class PostService {
                         throw new RuntimeException(String.format(format, it.getPassword(), request.getPassword()));
                     }
 
-                    // 해당 게시글의 답변도 함께 리턴.
-                    var replies = replyService.findAllByPostId(request.getPostId());
-                    it.setReplies(replies);
-                    return it;
+                    return postConverter.toDto(it);
 
                 }).orElseThrow(
                         () -> {
