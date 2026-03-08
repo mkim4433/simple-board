@@ -27,5 +27,6 @@ public class BoardEntity {
     @OneToMany(mappedBy = "board")
     @SQLRestriction("status = 'REGISTERED'")
     @OrderBy("id desc")
+    @Builder.Default
     private List<PostEntity> postList = List.of();
 }
