@@ -18,7 +18,7 @@ public class PostDto {
 
     private Long id;
 
-    private Long boardId;
+    private Long boardId = 1L;
 
     private String userName;
 

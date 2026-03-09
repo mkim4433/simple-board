@@ -1,8 +1,10 @@
 package com.example.simple_board.board.controller;
 
+import com.example.simple_board.board.db.BoardEntity;
 import com.example.simple_board.board.model.BoardDto;
 import com.example.simple_board.board.model.BoardRequest;
 import com.example.simple_board.board.service.BoardService;
+import com.example.simple_board.crud.CRUDAbstractApiController;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/board")
 @RequiredArgsConstructor
-public class BoardApiController {
+public class BoardApiController extends CRUDAbstractApiController<BoardDto, BoardEntity> {
 
-    private final BoardService boardService;
+    /*private final BoardService boardService;
 
     @PostMapping("")
     public BoardDto create(@Valid @RequestBody BoardRequest boardRequest) {
@@ -24,5 +26,5 @@ public class BoardApiController {
     public BoardDto view(@PathVariable Long id) {
 
         return boardService.view(id);
-    }
+    }*/
 }

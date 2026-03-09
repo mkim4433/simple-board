@@ -2,6 +2,7 @@ package com.example.simple_board.board.db;
 
 import com.example.simple_board.post.db.PostEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
 
@@ -20,6 +21,7 @@ public class BoardEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String boardName;
 
     private String status;

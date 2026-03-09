@@ -3,6 +3,7 @@ package com.example.simple_board.post.service;
 import com.example.simple_board.board.db.BoardRepository;
 import com.example.simple_board.common.Api;
 import com.example.simple_board.common.Pagination;
+import com.example.simple_board.crud.CRUDAbstractService;
 import com.example.simple_board.post.db.PostEntity;
 import com.example.simple_board.post.db.PostRepository;
 import com.example.simple_board.post.model.PostDto;
@@ -17,9 +18,9 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PostService {
+public class PostService extends CRUDAbstractService<PostDto, PostEntity> {
 
-    private final PostRepository postRepository;
+   /* private final PostRepository postRepository;
     private final BoardRepository boardRepository;
     private final PostConverter postConverter;
 
@@ -94,5 +95,5 @@ public class PostService {
                             return new RuntimeException("해당 게시글이 존재하지 않습니다. ID : " + request.getPostId());
                         }
                 );
-    }
+    }*/
 }
